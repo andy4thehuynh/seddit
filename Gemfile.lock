@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    cuba (3.9.2)
+      rack (>= 1.6.0)
+    rack (2.0.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  cuba (~> 3.9.2)
+
+RUBY VERSION
+   ruby 2.2.4p230
+
+BUNDLED WITH
+   1.15.0
