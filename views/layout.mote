@@ -1,0 +1,9 @@
+<html>
+  <head>
+    <title>Seddit - Your Saved Reddit Manager</title>
+  </head>
+  <body>
+    <h1>Hello, mote!</h1>
+    {{ content  }}
+  </body>
+</html>
