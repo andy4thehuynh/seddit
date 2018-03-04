@@ -1,6 +1,8 @@
 <html>
   <head>
     <title>Seddit - Your Saved Reddit Manager</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
   </head>
   <body>
     <h1>Hello, mote!</h1>
