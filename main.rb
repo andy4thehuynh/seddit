@@ -24,11 +24,23 @@ Cuba.use Redd::Middleware,
 Cuba.define do
   on get do
     on root do
-      render("index")
+      user = req.env['redd.session']
+
+      if user
+        render('home', user: user)
+      else
+        render("sign_in")
+      end
     end
 
     on 'redirect' do
-      render('home', req: req)
+      user = req.env['redd.session']
+      render('home', user: user)
+    end
+
+    on 'logout' do
+      req.env['redd.session'] = nil
+      res.redirect '/'
     end
   end
 end

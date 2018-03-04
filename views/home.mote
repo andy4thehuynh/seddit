@@ -1,1 +1,3 @@
-Hi, {{ req.env['redd.session'].me.name }}!
+Hi, {{ user.me.name }}!
+
+<a href='/logout'>Logout</a>
