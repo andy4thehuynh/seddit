@@ -1,0 +1,1 @@
+Hi, {{ req.env['redd.session'].me.name }}!

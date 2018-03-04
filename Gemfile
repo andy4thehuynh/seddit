@@ -4,6 +4,7 @@ ruby '2.2.4'
 
 gem 'cuba', '~> 3.9.2'
 gem 'cuba-contrib', '~> 3.1.0'
+gem 'dotenv', '~> 2.2.1'
 gem 'mote', '~> 1.3.0'
 gem 'redd', '~> 0.8.8'
 
