@@ -1,3 +1,5 @@
 Hi, {{ user.me.name }}!
 
+{{ saved_content.body }}
+
 <a href='/logout'>Logout</a>
