@@ -15,5 +15,3 @@ Hi, {{ user.me.name }}!
   {{ child[:data].keys }}
 </h1>
 
-
-<a href='/logout'>Logout</a>

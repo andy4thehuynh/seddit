@@ -1,1 +1,20 @@
-<a href="/login">login with reddit</a>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="bs-component">
+      <div class="jumbotron">
+        <h1>Seddit - Your Reddit Saved Content Manager</h1>
+
+        <p class="lead">
+          Signin using your personal Reddit account and navigate through your content easily.
+        </p>
+
+        <hr class="my-4" />
+
+        <p class="lead">We will only see your saved content</p>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="/login">Login with Reddit</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

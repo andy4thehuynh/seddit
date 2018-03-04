@@ -32,7 +32,7 @@ Cuba.define do
 
         render('home', user: user, saved_content: saved_content)
       else
-        render("sign_in")
+        render("sign_in", user: nil)
       end
     end
 
