@@ -17,7 +17,7 @@ Cuba.use Redd::Middleware,
   client_id:    ENV["CLIENT_ID"],
   secret:       ENV["SECRET_KEY"],
   redirect_uri: 'http://127.0.0.1:9393/redirect',
-  scope:        %w(identity save),
+  scope:        %w(identity history),
   via:          '/login'
 
 
@@ -27,7 +27,10 @@ Cuba.define do
       user = req.env['redd.session']
 
       if user
-        render('home', user: user)
+        path = "/user/#{user.me.name}/saved"
+        saved_content = user.client.get(path)
+
+        render('home', user: user, saved_content: saved_content)
       else
         render("sign_in")
       end
@@ -35,7 +38,9 @@ Cuba.define do
 
     on 'redirect' do
       user = req.env['redd.session']
-      render('home', user: user)
+      if user
+        res.redirect '/'
+      end
     end
 
     on 'logout' do

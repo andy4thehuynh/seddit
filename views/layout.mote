@@ -4,6 +4,6 @@
   </head>
   <body>
     <h1>Hello, mote!</h1>
-    {{ content  }}
+    {{ content }}
   </body>
 </html>
