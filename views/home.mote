@@ -1,0 +1,3 @@
+Hi, {{ user.me.name }}!
+
+<a href='/logout'>Logout</a>
