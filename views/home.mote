@@ -1,5 +1,19 @@
 Hi, {{ user.me.name }}!
 
-{{ saved_content.body }}
+% child = saved_content.body[:data][:children].first
+<p>{{ child[:data][:subreddit] }}</p>
+<p>{{ child[:data][:title] }}</p>
+<p>{{ child[:data][:url] }}</p>
+<p>{{ child[:data][:score] }}</p>
+<p>{{ child[:data][:thumbnail] }}</p>
+<p>{{ child[:data][:gilded] }}</p>
+<p>{{ child[:data][:created] }}</p>
+<p>{{ child[:data][:author] }}</p>
+<p>{{ child[:data][:permalink] }}</p>
+
+<h1>
+  {{ child[:data].keys }}
+</h1>
+
 
 <a href='/logout'>Logout</a>
