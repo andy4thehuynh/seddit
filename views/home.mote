@@ -4,17 +4,6 @@
   </div>
 </div>
 
-% child = saved_content.body[:data][:children].first
-<p>subreddit - {{ child[:data][:subreddit] }}</p>
-<p>title - {{ child[:data][:title] }}</p>
-<p>url - {{ child[:data][:url] }}</p>
-<p>score - {{ child[:data][:score] }}</p>
-<p>thumbnail - {{ child[:data][:thumbnail] }}</p>
-<p>gilded - {{ child[:data][:gilded] }}</p>
-<p>created - {{ child[:data][:created] }}</p>
-<p>author - {{ child[:data][:author] }}</p>
-<p>permalink - {{ child[:data][:permalink] }}</p>
-
 <table class="table table-hover">
   <tbody>
     % saved_content.body[:data][:children].each_with_index do |child, i|
