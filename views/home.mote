@@ -17,12 +17,12 @@
         <td>
           <p>
             % if child[:data][:title].nil?
-              Saved Comment ({{ child[:data][:subreddit] }})
+              <em>Saved Comment </em> <strong>({{ child[:data][:subreddit] }})</strong>
             % else
-              {{ helper.truncate(child[:data][:title], 50) }} ({{ child[:data][:subreddit] }})
+              {{ helper.truncate(child[:data][:title], 50) }} <strong>({{ child[:data][:subreddit] }})</strong>
             % end
           </p>
-          <p>Submitted - {{ Time.at(child[:data][:created]).strftime('%x') }} ({{ child[:data][:author] }})</p>
+          <p>Submitted - {{ Time.at(child[:data][:created]).strftime('%x') }} <strong>({{ child[:data][:author] }})</strong></p>
         </td>
         <td><a class="btn btn-{{ i.even? ? "" : "outline-" }}primary" target="_" href="http://www.reddit.com{{ child[:data][:permalink] }}">open</a></td>
       </tr>
