@@ -1,17 +1,43 @@
-Hi, {{ user.me.name }}!
+<div class="row">
+  <div class="col-lg-12">
+    <h1>Welcome, {{ user.me.name }}!</h1>
+  </div>
+</div>
 
 % child = saved_content.body[:data][:children].first
-<p>{{ child[:data][:subreddit] }}</p>
-<p>{{ child[:data][:title] }}</p>
-<p>{{ child[:data][:url] }}</p>
-<p>{{ child[:data][:score] }}</p>
-<p>{{ child[:data][:thumbnail] }}</p>
-<p>{{ child[:data][:gilded] }}</p>
-<p>{{ child[:data][:created] }}</p>
-<p>{{ child[:data][:author] }}</p>
-<p>{{ child[:data][:permalink] }}</p>
+<p>subreddit - {{ child[:data][:subreddit] }}</p>
+<p>title - {{ child[:data][:title] }}</p>
+<p>url - {{ child[:data][:url] }}</p>
+<p>score - {{ child[:data][:score] }}</p>
+<p>thumbnail - {{ child[:data][:thumbnail] }}</p>
+<p>gilded - {{ child[:data][:gilded] }}</p>
+<p>created - {{ child[:data][:created] }}</p>
+<p>author - {{ child[:data][:author] }}</p>
+<p>permalink - {{ child[:data][:permalink] }}</p>
 
-<h1>
-  {{ child[:data].keys }}
-</h1>
+<table class="table table-hover">
+  <tbody>
+    % saved_content.body[:data][:children].each_with_index do |child, i|
+      <tr class="table-{{ i.even? ? "info" : "light" }}">
+        <td>
+          {{ child[:data][:score] }}
+          % if child[:data][:gilded] != 0
+            <span class="badge badge-pill badge-warning">{{ child[:data][:gilded] }} Gold</span>
+          % end
+        </td>
+        <td>
+          <p>
+            % if child[:data][:title].nil?
+              Saved Comment ({{ child[:data][:subreddit] }})
+            % else
+              {{ helper.truncate(child[:data][:title], 50) }} ({{ child[:data][:subreddit] }})
+            % end
+          </p>
+          <p>Submitted - {{ Time.at(child[:data][:created]).strftime('%x') }} ({{ child[:data][:author] }})</p>
+        </td>
+        <td><a class="btn btn-{{ i.even? ? "" : "outline-" }}primary" target="_" href="http://www.reddit.com{{ child[:data][:permalink] }}">open</a></td>
+      </tr>
+    % end
+  </tbody>
+</table>
 

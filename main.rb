@@ -8,6 +8,7 @@ Dotenv.load
 
 Cuba.plugin Cuba::Safe
 Cuba.plugin Cuba::Mote
+Cuba.plugin Cuba::TextHelpers
 
 Cuba.use Rack::Static, urls: %w[/js /css /img], root: File.expand_path("./public", __dir__)
 Cuba.use Rack::Session::Cookie, :secret => '__a_very_long_string__'
@@ -30,7 +31,7 @@ Cuba.define do
         path = "/user/#{user.me.name}/saved"
         saved_content = user.client.get(path)
 
-        render('home', user: user, saved_content: saved_content)
+        render('home', user: user, saved_content: saved_content, helper: self)
       else
         render("sign_in", user: nil)
       end
