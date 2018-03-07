@@ -27,7 +27,7 @@ Cuba.define do
     on root do
       user = req.env['redd.session']
 
-      if user
+      if !user.nil?
         path = "/user/#{user.me.name}/saved"
         saved_content = user.client.get(path)
 
@@ -38,9 +38,17 @@ Cuba.define do
     end
 
     on 'redirect' do
-      user = req.env['redd.session']
-      if user
-        res.redirect '/'
+      res.redirect root if req.env['redd.error'].nil?
+
+      if req.env['redd.error'].message == 'access_denied'
+        render('home', user: user, saved_content: saved_content, req: req)
+        # res.write "you clicked decline"
+      elsif req.env['redd.error'].message == 'invalid_state'
+        render('home', user: user, saved_content: saved_content, req: req)
+        # res.write "Did you login through our website?"
+      else
+        puts "Error while logging in!"
+        raise req.env['redd.error'] # Raise a 500 and make a mental note to look at the logs later
       end
     end
 
