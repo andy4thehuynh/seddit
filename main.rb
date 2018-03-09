@@ -17,7 +17,7 @@ Cuba.use Redd::Middleware,
   user_agent:   'Redd:Username App:v1.0.0 (by /u/seddit_development)',
   client_id:    ENV["CLIENT_ID"],
   secret:       ENV["SECRET_KEY"],
-  redirect_uri: 'http://127.0.0.1:9393/redirect',
+  redirect_uri: 'http://127.0.0.1:9393/auth/reddit/callback',
   scope:        %w(identity history),
   via:          '/login'
 
@@ -27,7 +27,7 @@ Cuba.define do
     on root do
       user = req.env['redd.session']
 
-      if user
+      if !user.nil?
         path = "/user/#{user.me.name}/saved"
         saved_content = user.client.get(path)
 
@@ -37,10 +37,18 @@ Cuba.define do
       end
     end
 
-    on 'redirect' do
-      user = req.env['redd.session']
-      if user
-        res.redirect '/'
+    on 'auth/reddit/callback' do
+      res.redirect root if req.env['redd.error'].nil?
+
+      if req.env['redd.error'].message == 'access_denied'
+        render("sign_in")
+        # res.write "you clicked decline"
+      elsif req.env['redd.error'].message == 'invalid_state'
+        render("sign_in")
+        # res.write "Did you login through our website?"
+      else
+        puts "Error while logging in!"
+        raise req.env['redd.error'] # Raise a 500 and make a mental note to look at the logs later
       end
     end
 
