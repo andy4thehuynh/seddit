@@ -17,7 +17,7 @@ Cuba.use Redd::Middleware,
   user_agent:   'Redd:Username App:v1.0.0 (by /u/seddit_development)',
   client_id:    ENV["CLIENT_ID"],
   secret:       ENV["SECRET_KEY"],
-  redirect_uri: 'http://127.0.0.1:9393/redirect',
+  redirect_uri: 'http://127.0.0.1:9393/auth/reddit/callback',
   scope:        %w(identity history),
   via:          '/login'
 
@@ -37,14 +37,14 @@ Cuba.define do
       end
     end
 
-    on 'redirect' do
+    on 'auth/reddit/callback' do
       res.redirect root if req.env['redd.error'].nil?
 
       if req.env['redd.error'].message == 'access_denied'
-        render('home', user: user, saved_content: saved_content, req: req)
+        render("sign_in")
         # res.write "you clicked decline"
       elsif req.env['redd.error'].message == 'invalid_state'
-        render('home', user: user, saved_content: saved_content, req: req)
+        render("sign_in")
         # res.write "Did you login through our website?"
       else
         puts "Error while logging in!"
