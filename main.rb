@@ -82,7 +82,7 @@ Cuba.define do
 
         render('home', user: user, saved_content: posts.flatten.body[:children], helper: self)
       else
-        render("sign_in", user: nil)
+        render("sign_in", user: nil, helper: self)
       end
     end
 
