@@ -80,7 +80,7 @@ Cuba.define do
         fourteenth = user.client.get(path, limit: 1000, after: thirteen.body[:data][:after])
         posts << fourteenth.body[:data][:children]
 
-        render('home', user: user, saved_content: posts.flatten, helper: self)
+        render('home', user: user, saved_content: posts.flatten.body[:children], helper: self)
       else
         render("sign_in", user: nil)
       end

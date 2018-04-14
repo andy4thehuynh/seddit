@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-12">
-    <h1 style="padding: 8rem 0;">Welcome, {{ user.me.name }}!</h1>
+    <h1 style="padding: 8rem 0;">Welcome, {{ user.me.name }}! {{ saved_content.count }} posts</h1>
   </div>
 </div>
 
