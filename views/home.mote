@@ -6,7 +6,7 @@
 
 <table class="table table-hover">
   <tbody>
-    % saved_content.body[:data][:children].each_with_index do |child, i|
+    % saved_content.each_with_index do |child, i|
       <tr class="table-{{ i.even? ? "info" : "light" }}">
         <td>
           {{ child[:data][:score] }}
